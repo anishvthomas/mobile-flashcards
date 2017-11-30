@@ -22,10 +22,9 @@ class NewDeck extends Component {
         errorText:''
     }
     submit =() => {
-        //const key = timeToString()
+
         const deckName = this.state.text
-        //console.log('submit key',key)
-        console.log('submit',deckName)
+
 
         if(deckName !== "" ){
             this.setState( {
@@ -54,7 +53,7 @@ class NewDeck extends Component {
 
     }
     toHome = () => {
-        console.log('toHome')
+
         this.props.navigation.dispatch(NavigationActions.back({
             key: 'NewDeck'
         }))

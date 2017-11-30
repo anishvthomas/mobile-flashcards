@@ -26,7 +26,7 @@ class DeckDetail extends Component {
 
         return (
             <View style={{ flex: 1}}>
-                <TouchableOpacity style={styles.deckItem}>
+                <View style={styles.deckItem}>
                     <Text style={styles.titleStyle}>{name}</Text>
                     <Text style={styles.cardNumber}>{deckDetail[name] && deckDetail[name].questions.length}</Text>
                     <Btn title='Add Card' onPress={() => this.props.navigation.navigate(
@@ -38,7 +38,7 @@ class DeckDetail extends Component {
                         {deck: deckDetail[name]}
                     )}/>
 
-                </TouchableOpacity>
+                </View>
 
             </View>
         )
@@ -57,18 +57,7 @@ const styles = StyleSheet.create(
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            borderColor: '#CCC',
-            borderWidth: 1,
-            borderRadius: Platform.OS === 'ios' ? 16 : 2,
-            marginLeft: 6,
-            marginRight: 6,
-            shadowRadius: 6,
-            shadowOpacity: .5,
-            shadowColor: 'rgba(0,0,0,24)',
-            shadowOffset: {
-                width: 1,
-                height: 5
-            }
+
         },
         titleStyle: {
             fontSize: 25

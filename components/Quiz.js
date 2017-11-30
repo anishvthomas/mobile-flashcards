@@ -42,11 +42,7 @@ class Quiz extends Component {
     }
 
     render () {
-        console.log('Quiz',this.props)
         const { deck }= this.props.navigation.state.params
-        console.log('Quiz deck',deck)
-        console.log('this.state.showAnswer',this.state.showAnswer)
-        console.log('this.state.currentQuestion',this.state.currentQuestion)
         const numberOfQuestions = deck.questions.length
 
 
@@ -54,27 +50,25 @@ class Quiz extends Component {
             {
                 return (
                 <View style={{ flex: 1}}>
-                <TouchableOpacity style={styles.deckItem}>
-                <Text style={styles.cardNumber}>{this.state.currentQuestion+1}/{deck.questions && deck.questions.length}</Text>
-                 {  this.state.showAnswer ?
-                        <View>
-                            <Text style={styles.titleStyle}>{deck.questions[this.state.currentQuestion].answer}</Text>
-                            <Btn title='Question' onPress={()=>{this.setState({currentQuestion: this.state.currentQuestion+ 1 } )
-                            this.setState({showAnswer: false} )}
-                            }/>
-                        </View>
-                :
-                        <View>
-                           <Text style={styles.titleStyle}>{deck.questions[this.state.currentQuestion].question}</Text>
-                           <Btn title='Answer' onPress={()=>(this.setState({showAnswer: true} ))}/>
-                       </View>
-               }
-
-                    <CorrectBtn title='Correct' onPress={()=>this.setState({score:this.state.score+1})}/>
-                    <IncorrectBtn title='Incorrect' onPress={()=>this.setState({score:this.state.score-1})}/>
-
-                </TouchableOpacity>
-
+                    <View style={styles.deckItem}>
+                        <Text style={styles.cardNumber}>{this.state.currentQuestion+1}/{deck.questions && deck.questions.length}</Text>
+                        {
+                            this.state.showAnswer ?
+                            <View style={styles.quizItem}>
+                                <Text style={styles.titleStyle}>{deck.questions[this.state.currentQuestion].answer}</Text>
+                                <Btn title='Question' onPress={()=>{this.setState({currentQuestion: this.state.currentQuestion+ 1 } )
+                                this.setState({showAnswer: false} )}
+                                }/>
+                            </View>
+                        :
+                            <View style={styles.quizItem}>
+                                <Text style={styles.titleStyle}>{deck.questions[this.state.currentQuestion].question}</Text>
+                                <Btn title='Answer' onPress={()=>(this.setState({showAnswer: true} ))}/>
+                            </View>
+                        }
+                            <CorrectBtn title='Correct' onPress={()=>this.setState({score:this.state.score+1})}/>
+                            <IncorrectBtn title='Incorrect' onPress={()=>this.setState({score:this.state.score-1})}/>
+                    </View>
             </View>
         )
         }
@@ -82,12 +76,12 @@ class Quiz extends Component {
             clearLocalNotification()
                 .then(setLocalNotification())
             return (
-            <TouchableOpacity style={styles.deckItem}>
+            <View style={styles.deckItem}>
                 <Text style={styles.titleStyle}>SCORE</Text>
-                <Text style={styles.cardNumber}>{this.state.score}</Text>
+                <Text style={styles.scoreNumber}>{this.state.score}</Text>
                 <Btn title='Retake Quiz' onPress={()=>this.setState({currentQuestion:0})}/>
                 <Btn title='Back' onPress={()=>this.props.navigation.goBack()}/>
-            </TouchableOpacity>
+            </View>
         )
         }
 
@@ -96,8 +90,6 @@ class Quiz extends Component {
 
 }
 function mapStateToProps(state,ownprops) {
-    console.log('mapStateToProps DeckDetail',state)
-    console.log('mapStateToProps DeckDetail ownprops',ownprops)
     return {
         deckDetail: state
     }
@@ -105,8 +97,14 @@ function mapStateToProps(state,ownprops) {
 const styles = StyleSheet.create(
         {
         deckItem: {
-            flex: 1,
-            justifyContent: 'center',
+                flex: 1,
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+
+            },
+        quizItem: {
+
+            alignSelf:'stretch',
             alignItems: 'center',
             borderColor: '#CCC',
             borderWidth: 1,
@@ -115,30 +113,27 @@ const styles = StyleSheet.create(
             marginRight: 6,
             shadowRadius: 6,
             shadowOpacity: .5,
+            padding:20,
             shadowColor: 'rgba(0,0,0,24)',
             shadowOffset: {
                 width: 1,
                 height: 5
             }
-        },
+
+                },
+
         titleStyle: {
-            fontSize: 36
+            fontSize: 22
         },
         cardNumber: {
             fontSize: 18,
             color: '#BBB'
         },
-        container: {
-            flex: 1,
-            padding: 20,
-            backgroundColor: white
+        scoreNumber: {
+            fontSize: 22,
+            color: purple
         },
-        row: {
-            flexDirection: 'row',
-            flex: 1,
-            alignItems: 'center'
 
-        },
         iosSubmitBtn: {
             backgroundColor: purple,
             padding: 10,

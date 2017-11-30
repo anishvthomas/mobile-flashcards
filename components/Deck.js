@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View , Platform, TouchableOpacity} from 'react-native';
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import { connect } from 'react-redux'
+import { white } from '../utils/colors'
 class Deck extends Component {
 
     render () {
         const {title, questions }= this.props.data
-            return (
+        const { backgroundColor }= this.props
+        return (
             <View style={{ flex: 1}}>
-                <TouchableOpacity style={styles.deckItem}
+                <TouchableOpacity style={[styles.deckItem, {'backgroundColor':backgroundColor} ]}
                     onPress={() => this.props.navigation.navigate(
                         'DeckDetail',
                         {name: title}
@@ -34,23 +36,15 @@ const styles = StyleSheet.create(
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor:'#78909c',
-            borderColor: '#CCC',
-            borderWidth: 1,
-            shadowRadius: 6,
-            shadowOpacity: .5,
-            shadowColor: 'rgba(0,0,0,24)',
-            shadowOffset: {
-                width: 1,
-                height: 5
-            }
+
         },
         titleStyle: {
-            fontSize: 25
+            fontSize: 25,
+            color: white,
         },
         cardNumber: {
             fontSize: 18,
-            color: '#BBB'
+            color: white
         }}
 
 )
