@@ -66,8 +66,8 @@ class Quiz extends Component {
                                 <Btn title='Answer' onPress={()=>(this.setState({showAnswer: true} ))}/>
                             </View>
                         }
-                            <CorrectBtn title='Correct' onPress={()=>this.setState({score:this.state.score+1})}/>
-                            <IncorrectBtn title='Incorrect' onPress={()=>this.setState({score:this.state.score-1})}/>
+                            <CorrectBtn title='Correct' onPress={()=>{this.setState({score:this.state.score+1,currentQuestion: this.state.currentQuestion+ 1})}}/>
+                            <IncorrectBtn title='Incorrect' onPress={()=>this.setState({currentQuestion: this.state.currentQuestion+ 1})}/>
                     </View>
             </View>
         )
@@ -79,7 +79,7 @@ class Quiz extends Component {
             <View style={styles.deckItem}>
                 <Text style={styles.titleStyle}>SCORE</Text>
                 <Text style={styles.scoreNumber}>{this.state.score}</Text>
-                <Btn title='Retake Quiz' onPress={()=>this.setState({currentQuestion:0})}/>
+                <Btn title='Retake Quiz' onPress={()=>this.setState({currentQuestion:0, score:0})}/>
                 <Btn title='Back' onPress={()=>this.props.navigation.goBack()}/>
             </View>
         )
