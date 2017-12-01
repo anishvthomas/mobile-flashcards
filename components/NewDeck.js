@@ -53,10 +53,17 @@ class NewDeck extends Component {
 
     }
     toHome = () => {
-
-        this.props.navigation.dispatch(NavigationActions.back({
-            key: 'NewDeck'
-        }))
+        //onPress={() => this.props.navigation.navigate(
+        //    'DeckDetail',
+        //    {name: title}
+        //)}
+        //this.props.navigation.dispatch(NavigationActions.back({
+        //    key: 'NewDeck'
+        //}))
+        this.props.navigation.navigate(
+            'DeckDetail',
+            {name: this.state.text}
+        )
 
     }
     render () {
