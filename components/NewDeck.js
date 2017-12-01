@@ -40,8 +40,8 @@ class NewDeck extends Component {
             }
         ))
 
-        //Navigate to Home
-        this.toHome()
+        //Navigate to the newly created Deck
+        this.showDeck()
 
         //Save to DB
         saveDeckTitle(deckName)}
@@ -52,14 +52,7 @@ class NewDeck extends Component {
         }
 
     }
-    toHome = () => {
-        //onPress={() => this.props.navigation.navigate(
-        //    'DeckDetail',
-        //    {name: title}
-        //)}
-        //this.props.navigation.dispatch(NavigationActions.back({
-        //    key: 'NewDeck'
-        //}))
+    showDeck = () => {
         this.props.navigation.navigate(
             'DeckDetail',
             {name: this.state.text}
