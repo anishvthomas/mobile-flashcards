@@ -5,6 +5,7 @@ import { getDecks } from '../utils/api'
 import { connect } from 'react-redux'
 import { receiveDecks } from '../actions'
 import  Deck  from './Deck'
+import { colorArray } from '../utils/colors'
 class DeckList extends Component {
 
     componentDidMount() {
@@ -15,7 +16,6 @@ class DeckList extends Component {
     }
     render () {
         const { decks } = this.props
-        const colorArray= ['#9b59b6', '#34495e', '#f1c40f', '#e67e22', '#e74c3c', '#bdc3c7', '#2ecc71', '#16a085','#1abc9c', '#3498db']
         return (
             <View style={{ flex: 1, alignItems: 'stretch', justifyContent: 'flex-start' }}>
               {decks && Object.keys(decks).map((deck,index)=>{
@@ -25,9 +25,6 @@ class DeckList extends Component {
         )
     }
 }
-function mapStateToProps(state) {
-    return {
-        decks:state
-    }
-}
+const mapStateToProps = (decks) => ({ decks })
+
 export default connect(mapStateToProps)(DeckList)

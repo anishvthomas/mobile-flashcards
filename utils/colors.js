@@ -7,3 +7,4 @@ export const blue = '#4e4cb8'
 export const lightPurp = '#7c53c3'
 export const pink = '#b93fb3'
 export const green = '#208000'
+export const colorArray = ['#9b59b6', '#34495e', '#f1c40f', '#e67e22', '#e74c3c', '#bdc3c7', '#2ecc71', '#16a085','#1abc9c', '#3498db']
